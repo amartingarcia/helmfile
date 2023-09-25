@@ -1,0 +1,14 @@
+# Custom values for stakater/Reloader.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+---
+reloader:
+  deployment:
+    # Resources limits.
+    resources:
+      limits:
+        cpu: "100m"
+        memory: "256Mi"
+      requests:
+        cpu: "100m"
+        memory: "128Mi"

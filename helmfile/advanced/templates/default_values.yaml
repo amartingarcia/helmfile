@@ -1,0 +1,97 @@
+---
+templates:
+  # Labels
+  none_enc_labels: &none_enc_labels
+    labels:
+      enc: none
+
+  sops_enc_labels: &sops_enc_labels
+    labels:
+      enc: sops
+
+  vals_enc_labels: &vals_enc_labels
+    labels:
+      enc: vals
+
+  # Values files
+  default_values: &default_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+  
+  gotmpl_values: &gotmpl_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml.gotmpl
+  
+  remote_values: &remote_values
+    values:
+    - defaults.yaml
+    - git::https://user:{{ env "CI_JOB_TOKEN" }}@git.company.com/demo/helmfiles/{{ .Environment.Name }}/values.yaml?ref=master
+    - http://$HOSTNAME/artifactory/example-repo-local/test.tgz@values.yaml
+  
+  # Secrets on values files
+  ## Local `SOPS`
+  pgp_local_secret_values: &pgp_local_secret_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+    secrets:
+    - envs/{{ .Environment.Name }}/pgp-local-secret-values.yaml
+  
+  hc_local_secret_values: &hc_local_secret_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+    secrets:
+    - envs/{{ .Environment.Name }}/hc-local-secret-values.yaml
+  
+  gcp_local_secret_values: &gcp_local_secret_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+    secrets:
+    - envs/{{ .Environment.Name }}/gcp-local-secret-values.yaml
+  
+  aws_local_secret_values: &aws_local_secret_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+    secrets:
+    - envs/{{ .Environment.Name }}/aws-local-secret-values.yaml
+
+  az_local_secret_values: &az_local_secret_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+    secrets:
+    - envs/{{ .Environment.Name }}/az-local-secret-values.yaml
+  
+  ## Remote `VALS`
+  hc_remote_secret_values: &hc_remote_secret_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+    secrets:
+    - envs/{{ .Environment.Name }}/hc-remote-secret-values.yaml
+  
+  gcp_remote_secret_values: &gcp_remote_secret_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+    secrets:
+    - envs/{{ .Environment.Name }}/gcp-remote-secret-values.yaml
+  
+  aws_remote_secret_values: &aws_remote_secret_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+    secrets:
+    - envs/{{ .Environment.Name }}/aws-remote-secret-values.yaml
+
+  az_remote_secret_values: &az_remote_secret_values
+    values:
+    - defaults.yaml
+    - envs/{{ .Environment.Name }}/values.yaml
+    secrets:
+    - envs/{{ .Environment.Name }}/az-remote-secret-values.yaml

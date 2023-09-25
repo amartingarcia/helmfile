@@ -1,0 +1,19 @@
+---
+templates:
+  default_releases: &default_releases
+    values:
+    - metrics-server-version: 3.8.2
+    - metrics-server-enabled: true
+    - reloader-version: 0.0.118
+    - reloader-enabled: true
+
+environments:
+  dev:
+    values:
+    <<: *default_releases
+  pre:
+    values:
+    <<: *default_releases
+  pro:
+    values:
+    <<: *default_releases

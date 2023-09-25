@@ -1,0 +1,17 @@
+---
+bases:
+  - "../../bases/helmDefaults.yaml"
+  - "../../bases/environments.yaml"
+
+---
+{{ readFile "../../templates/default_values.yaml" }}
+
+releases:
+# https://github.com/helm/charts/blob/master/stable/metrics-server/values.yaml
+- name: metrics-server
+  chart: metrics-server/metrics-server
+  namespace: metrics-server
+  installed: {{ index (.Values | get "metrics-server-enabled" "") }}
+  version: {{ index (.Values | get "metrics-server-version" "") }}
+  <<: *none_enc_labels
+  <<: *gotmpl_values

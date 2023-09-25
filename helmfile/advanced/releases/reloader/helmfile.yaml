@@ -1,0 +1,19 @@
+---
+bases:
+  - "../../bases/helmDefaults.yaml"
+  - "../../bases/environments.yaml"
+
+---
+{{ readFile "../../templates/default_values.yaml" }}
+
+releases:
+# https://github.com/stakater/Reloader/blob/master/deployments/kubernetes/chart/reloader/values.yaml
+- name: reloader
+  installed: {{ eq .Environment.Name "dev" | toYaml }}
+  chart: reloader/reloader
+  namespace: reloader
+  installed: {{ index (.Values | get "reloader-enabled" "") }}
+  version: {{ index (.Values | get "reloader-version" "") }}
+  <<: *vals_enc_labels
+  <<: *az_remote_secret_values
+  

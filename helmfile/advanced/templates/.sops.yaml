@@ -1,0 +1,18 @@
+creation_rules:
+    # PGP
+    - path_regex: pgp-local.*.yaml$
+      pgp: B911C4BA2C10BF8BA1D9D005A680D32C9AE9B9CB
+    # HC Vault
+    - path_regex: hc-local-.*.yaml$
+      vault_path: "sops/"
+      vault_kv_mount_name: "secret/"
+      vault_kv_version: 2
+    # GCP KMS
+    - path_regex: gcp-local-.*.yaml$
+      gcp_kms: projects/mygcproject/locations/global/keyRings/mykeyring/cryptoKeys/thekey 
+    # AWS KMS
+    - path_regex: aws-local-.*.yaml$
+      kms: 'arn:aws:kms:us-west-2:0000000000000:key/fe86dd69-4132-404c-ab86-4269956b4500'
+    # AZ Key Vault
+    - path_regex: az-local-.*.yaml$
+      azure_keyvault: https://sops-test.vault.azure.net/keys/sops-key/7b7c6b92999b42e79d744a0d4dc40a01

@@ -1,0 +1,12 @@
+bases:
+- "bases/helmDefaults.yaml"
+- "bases/environments.yaml"
+
+repositories:
+- name: metrics-server
+  url: https://kubernetes-sigs.github.io/metrics-server/
+- name: reloader
+  url: https://stakater.github.io/stakater-charts
+
+helmfiles:
+- "releases/*/helmfile.yaml"

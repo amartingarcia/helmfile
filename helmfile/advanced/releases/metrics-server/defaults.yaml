@@ -1,0 +1,7 @@
+# Custom values for metrics-server.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+---
+args:
+# enable this if you have self-signed certificates, see: https://github.com/kubernetes-incubator/metrics-server
+  - --kubelet-insecure-tls

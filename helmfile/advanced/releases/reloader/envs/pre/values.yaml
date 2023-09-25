@@ -1,0 +1,7 @@
+# Custom values to preproduction environment.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+---
+reloader:
+  deployment:
+    replicas: 2
